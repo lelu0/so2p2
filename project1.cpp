@@ -26,7 +26,7 @@ void updateWindowFct()
 {
     while (running)
     {
-        usleep(50000);
+        usleep(500);
         window->updateWindow(queue->queueIds,queue->operationPointId);
     }
     delete window;
@@ -44,14 +44,13 @@ int main(int argc, char *argv[])
     std::thread windowThread(updateWindowFct);    
     std::thread exitThread(exitListener); 
     std::vector<std::thread> threads;
-
-    for(int i = 0; i < 6; i++){
+    for(int i = 0; i < 50; i++){
         threads.push_back(std::thread(&Queue::customer, queue, i));
     }   
    
     windowThread.join();
     exitThread.join();
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 50; i++)
     {
         threads[i].join();
     }

@@ -21,9 +21,10 @@ void Window::initWindow()
 }
 
 void Window::updateWindow(int q[6], int p){
+    clear();
     for(int i = 0; i <= 5; i++){
-        mvprintw(1,4*i,"%d|",q[5-i]);
+        mvprintw(1,4*i,"%d|",q[i]);
     }
-    mvprintw(1,4*7," %d|^^|",p);
+    mvprintw(3,4," %d|^^|",p);
     refresh();
 }
